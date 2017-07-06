@@ -1,11 +1,14 @@
 from bottle import Bottle,response,request,run,template,static_file
 import MySQLdb
+# import bottle_session
+# plugin_session = bottle_session.SessionPlugin(cookie_lifetime=600)
 app=Bottle()
-db = MySQLdb.connect('localhost','root','pass','sek091')
+# app.install(plugin_session)
+db = MySQLdb.connect('localhost','root','pandu123','sek091')
 cursor = db.cursor()
 
 @app.route('/static/<filepath:path>')
-def get_static_file(filepath):
+def get_static_file(session,filepath):
     return static_file(filepath,root='static/')
 
 @app.route('/')
